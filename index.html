@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            transition: 3s; /* Smooth color transition over 3 seconds */
+        }
+        body.color-flip {
+            background-color: #ff3385; /* Background color flipped to black */
+        }
+        body.color-flip #loveMessage {
+            color: white; /* Text color flipped to white */
+        }
+        body.color-flip #pressMeButton {
+            background-color: #fff;
+            color: #ff3385;
+        }
+        #loveMessage {
+            display: none;
+            font-size: 36px;
+            color: #ff3385;
+            animation: fadeIn 2s ease-in-out, heartbeat 2s infinite;
+            position: absolute;
+            top: 100px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700; 
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        #pressMeButton {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        #pressMeButton:hover {
+            background-color: #ff3385;
+        }
+    </style>
+    <title>For Bibub</title>
+</head>
+<body>
+    <button id="pressMeButton">Press Me</button>
+    <div id="loveMessage">LOVE YOU BIBUBBB 💕💕💕</div>
+
+    <script>
+        const pressMeButton = document.getElementById("pressMeButton");
+        const loveMessage = document.getElementById("loveMessage");
+
+        let colorFlipInterval = null;
+        let isColorFlipped = false;
+
+        pressMeButton.addEventListener("click", function() {
+            loveMessage.style.display = "block";
+
+            // Create an interval to flip colors every 2 seconds
+            colorFlipInterval = setInterval(() => {
+                if (isColorFlipped) {
+                    document.body.classList.remove("color-flip");
+                } else {
+                    document.body.classList.add("color-flip");
+                }
+                isColorFlipped = !isColorFlipped;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
